@@ -1,28 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Baseball Game</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <header>
-      <a href="https://www.vanillacoding.co/">
-        <img
-          src="https://d1sk7biawly96w.cloudfront.net/images/vc_logo@2x.png"
-          alt="바닐라코딩"
-        />
-      </a>
-    </header>
 
-    <section id="start-page">
-      <div class="game-start">
-        <img src="img/baseball-ani2.gif" alt="baseball" />
-        <h1>Game Start</h1>
-        <img src="img/baseball-ani2.gif" alt="baseball" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Baseball Game</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <header>
+    <a href="https://www.vanillacoding.co/">
+      <img src="https://d1sk7biawly96w.cloudfront.net/images/vc_logo@2x.png" alt="바닐라코딩" />
+    </a>
+  </header>
+
+  <section id="start-page">
+    <div class="game-start">
+      <img src="img/baseball-ani2.gif" alt="baseball" />
+      <h1>Game Start</h1>
+      <img src="img/baseball-ani2.gif" alt="baseball" />
+    </div>
+  </section>
+  <section id="play-page">
+    <div class="play-page__header">
+      <img src="img/baseball-ani.gif" alt="baseball" />
+      <h3>Baseball Game</h3>
+      <img src="img/baseball-ani.gif" alt="baseball" />
+      <div class="score">
+        score: <strong>10</strong>
       </div>
-    </section>
-    <section id="play-page"></section>
-  </body>
+    </div>
+    <div class="play-content">
+      <div class="play-input-wrapper">
+        <img src="img/hitter.gif" alt="baseball" />
+        <input id="play-input"></input>
+        <img src="img/pitcher.gif" alt="baseball" />
+      </div>
+      <hr>
+      <div class="score-board">
+        <div class="answer-list">1</div>
+        <div class="result-list">1</div>
+      </div>
+    </div>
+  </section>
+</body>
+
 </html>
