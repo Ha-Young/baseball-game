@@ -33,7 +33,7 @@ header img {
 }
 
 #start-page {
-  display: none;
+  display: block;
 }
 
 .game-start {
@@ -54,6 +54,7 @@ header img {
 }
 
 #play-page {
+  display: none;
   width: 100%;
   height: 100vh;
 }
@@ -111,6 +112,11 @@ header img {
   border: none;
 }
 
+#play-input::-webkit-outer-spin-button,
+#play-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
 
 #play-input:focus {
   background-color: cornsilk;
