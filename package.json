@@ -1,0 +1,26 @@
+{
+  "name": "baseball-game",
+  "version": "1.0.0",
+  "description": "baseball-game⚾",
+  "main": "index.js",
+  "scripts": {
+    "start": "parcel src/index.html",
+    "build": "rm -rf docs; parcel build -d docs --public-url /baseball-game src/index.html",
+    "predeploy": "npm clean; npm run build",
+    "deploy": "gh-pages -d docs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ha-Young/baseball-game.git"
+  },
+  "author": "hychoi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ha-Young/baseball-game/issues"
+  },
+  "homepage": "https://Ha-Young.github.io/baseball-game",
+  "devDependencies": {
+    "gh-pages": "^3.1.0",
+    "parcel-bundler": "^1.10.1"
+  }
+}
