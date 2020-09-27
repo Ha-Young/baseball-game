@@ -57,6 +57,11 @@ BaseBallMgmt.prototype.inputAnswer = function (
     return;
   }
 
+  if (this.checkOverlapNum(answer)) {
+    failCallbackFunc("overlapErr");
+    return;
+  }
+
   const result = this.getResult(answer);
 
   this.score -= 1;

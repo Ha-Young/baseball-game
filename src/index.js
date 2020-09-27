@@ -62,10 +62,6 @@ function inputAnswer(e) {
     const inputValue = e.target.value;
     e.target.value = "";
     console.log("inputAnswer", inputValue);
-    if (baseBallMgmtInstance.checkOverlapNum(inputValue)) {
-      alert("중복된 값을 입력하면 안됩니다.");
-      return;
-    }
 
     baseBallMgmtInstance.inputAnswer(
       inputValue,
@@ -83,8 +79,10 @@ function inputAnswer(e) {
         );
         newGame();
       },
-      function () {
-        alert("입력값이 세자리가 아닙니다. 다시 입력해주세요.");
+      function (err) {
+        if (err === "inputErr")
+          alert("입력값이 세자리가 아닙니다. 다시 입력해주세요.");
+        else if (err === "overlapErr") alert("중복된 값을 입력하면 안됩니다.");
       }
     );
   }
