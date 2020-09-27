@@ -1,15 +1,28 @@
 function BaseBallMgmt() {
-  this.count = 10;
+  this.score = 10;
+  this.correctAnswer = [];
   this.inputList = [];
   this.resultList = [];
 }
 
+BaseBallMgmt.prototype.makeRandomNum = function () {
+  let randomNum;
+  let overlapNum = "999";
+
+  while (overlapNum) {
+    randomNum = Math.floor(Math.random() * 9).toString();
+    overlapNum = this.correctAnswer.find(function (num) {
+      return num === randomNum;
+    });
+  }
+
+  return randomNum;
+};
+
 BaseBallMgmt.prototype.makeCorrectAnswer = function () {
-  this.correctAnswer = [
-    Math.floor(Math.random() * 9).toString(),
-    Math.floor(Math.random() * 9).toString(),
-    Math.floor(Math.random() * 9).toString(),
-  ];
+  for (let i = 0; i < 3; i++) {
+    this.correctAnswer.push(this.makeRandomNum());
+  }
   console.log("make correct answer", this.correctAnswer);
   // this.num1 = Math.floor(Math.random() * 9);
   // this.num2 = Math.floor(Math.random() * 9);
@@ -19,24 +32,32 @@ BaseBallMgmt.prototype.makeCorrectAnswer = function () {
 };
 
 BaseBallMgmt.prototype.init = function () {
-  console.log("claer", this.count, this.inputList, this.resultList);
-  this.count = 10;
+  console.log("claer", this.score, this.inputList, this.resultList);
+  this.score = 10;
   this.inputList = [];
   this.resultList = [];
   this.makeCorrectAnswer();
 };
 
-BaseBallMgmt.prototype.inputAnswer = function (answer, failCallbackFunc) {
+BaseBallMgmt.prototype.inputAnswer = function (
+  answer,
+  nonCollectCallbackFunc,
+  collectCallbackFunc,
+  failCallbackFunc
+) {
   if (this.checkAnswer(answer) === -1) {
-    failCallbackFunc();
+    failCallbackFunc("inputErr");
     return;
   }
 
-  const result = getResult(answer);
+  const result = this.getResult(answer);
 
-  this.count -= 1;
+  this.score -= 1;
   this.inputList.push(answer);
   this.resultList.push(result);
+
+  if (result === "3S") collectCallbackFunc(this.score);
+  else nonCollectCallbackFunc(this.score, this.inputList, this.resultList);
 };
 
 BaseBallMgmt.prototype.getResult = function (answer) {
@@ -72,7 +93,7 @@ BaseBallMgmt.prototype.getResult = function (answer) {
 };
 
 BaseBallMgmt.prototype.checkAnswer = function (answer) {
-  return /^[0-9]{3}$/g.search(answer);
+  return answer.search(/^[0-9]{3}$/);
 };
 
 module.exports = BaseBallMgmt;

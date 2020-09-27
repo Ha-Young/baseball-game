@@ -16,7 +16,22 @@ function gameStart() {
 
 function inputAnswer(e) {
   if (e.keyCode == 13) {
-    console.log("enter", e.target.value);
+    const inputValue = e.target.value;
+
+    baseBallMgmtInstance.inputAnswer(
+      inputValue,
+      function (score, inputList, resultList) {
+        setValueOnPage(score, inputList, resultList);
+      },
+      function (score) {
+        alert(
+          `축하합니다. 정답을 맞추셨습니다.\n당신의 점수는 ${score}점 입니다.`
+        );
+      },
+      function () {
+        alert("입력값이 세자리가 아닙니다. 다시 입력해주세요.");
+      }
+    );
   }
 }
 
