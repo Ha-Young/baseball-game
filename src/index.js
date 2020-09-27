@@ -4,14 +4,52 @@ const gameStartViewElement = document.getElementById("start-page");
 const gameStartBtnElement = gameStartViewElement.querySelector("h1");
 const gamePlayViewElement = document.getElementById("play-page");
 const inputAnswerElement = document.getElementById("play-input");
+const scoreTextElement = document.getElementById("play-score");
+const answerListElement = document.getElementById("answer-list");
+const resultListElement = document.getElementById("result-list");
 
 const baseBallMgmtInstance = new BaseBallMgmt();
+
+function removeAllChild(element) {
+  while (element.hasChildNodes()) {
+    element.removeChild(element.firstChild);
+  }
+}
+
+function setList(element, list) {
+  removeAllChild(element);
+  for (let i = 0; i < list.length; i++) {
+    const newLi = document.createElement("li");
+    newLi.innerHTML = list[i];
+    element.appendChild(newLi);
+  }
+}
 
 function gameStart() {
   gameStartViewElement.style.display = "none";
   gamePlayViewElement.style.display = "block";
 
   baseBallMgmtInstance.init();
+}
+
+function setAnswerList(answerList) {
+  setList(answerListElement, answerList);
+}
+
+function setResultList(resultList) {
+  setList(resultListElement, resultList);
+}
+
+function setValueOnPage(score, answerList, resultList) {
+  scoreTextElement.innerHTML = score;
+  if (parseInt(score) < 4) {
+    scoreTextElement.style.color = "red";
+  } else {
+    scoreTextElement.style.color = "black";
+  }
+
+  setAnswerList(answerList);
+  setResultList(resultList);
 }
 
 function inputAnswer(e) {

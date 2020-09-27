@@ -122,19 +122,28 @@ header img {
   background-color: cornsilk;
 }
 
-.score-board {
+.answer-board {
   margin-top: 100px;
   width: 70%;
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
 
-.answer-list {
+.list {
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
+  padding-left: 0px;
+  list-style-type: none;
+
+  font-size: 1.5rem;
 }
 
-.result-list {
-  display: flex;
-  justify-content: center;
+.list:first-child {
+  border-right: #213a3d solid 1px;
+}
+
+.list li {
+  margin-bottom: 10px;
 }

@@ -1,7 +1,7 @@
 function BaseBallMgmt() {
   this.score = 10;
   this.correctAnswer = [];
-  this.inputList = [];
+  this.answerList = [];
   this.resultList = [];
 }
 
@@ -24,17 +24,12 @@ BaseBallMgmt.prototype.makeCorrectAnswer = function () {
     this.correctAnswer.push(this.makeRandomNum());
   }
   console.log("make correct answer", this.correctAnswer);
-  // this.num1 = Math.floor(Math.random() * 9);
-  // this.num2 = Math.floor(Math.random() * 9);
-  // this.num3 = Math.floor(Math.random() * 9);
-
-  // this.answerSet = new Set([this.num1, this.num2, this.num3]);
 };
 
 BaseBallMgmt.prototype.init = function () {
-  console.log("claer", this.score, this.inputList, this.resultList);
+  console.log("claer", this.score, this.answerList, this.resultList);
   this.score = 10;
-  this.inputList = [];
+  this.answerList = [];
   this.resultList = [];
   this.makeCorrectAnswer();
 };
@@ -53,11 +48,11 @@ BaseBallMgmt.prototype.inputAnswer = function (
   const result = this.getResult(answer);
 
   this.score -= 1;
-  this.inputList.push(answer);
+  this.answerList.push(answer);
   this.resultList.push(result);
 
   if (result === "3S") collectCallbackFunc(this.score);
-  else nonCollectCallbackFunc(this.score, this.inputList, this.resultList);
+  else nonCollectCallbackFunc(this.score, this.answerList, this.resultList);
 };
 
 BaseBallMgmt.prototype.getResult = function (answer) {
