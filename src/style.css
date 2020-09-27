@@ -135,10 +135,17 @@ header img {
   font-size: 1.5rem;
 }
 
-.list:first-child {
-  border-right: #213a3d solid 1px;
-}
-
 .list li {
   margin-bottom: 10px;
+}
+
+.list-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.list-wrapper:first-child {
+  border-right: #213a3d solid 1px;
 }

@@ -5,6 +5,16 @@ function BaseBallMgmt() {
   this.resultList = [];
 }
 
+BaseBallMgmt.prototype.checkOverlapNum = function (inputValue) {
+  const checkSet = new Set(inputValue);
+
+  if (checkSet.size != 3) {
+    return true;
+  } else {
+    return false;
+  }
+};
+
 BaseBallMgmt.prototype.makeRandomNum = function (correctAnswer) {
   let randomNum;
   let overlapNum = "999";

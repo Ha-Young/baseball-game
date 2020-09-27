@@ -61,6 +61,11 @@ function inputAnswer(e) {
   if (e.keyCode == 13) {
     const inputValue = e.target.value;
     e.target.value = "";
+    console.log("inputAnswer", inputValue);
+    if (baseBallMgmtInstance.checkOverlapNum(inputValue)) {
+      alert("중복된 값을 입력하면 안됩니다.");
+      return;
+    }
 
     baseBallMgmtInstance.inputAnswer(
       inputValue,
