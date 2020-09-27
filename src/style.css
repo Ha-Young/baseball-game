@@ -91,15 +91,10 @@ header img {
 
 .play-content {
   width: 100%;
-  height: 100vh;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }
 
 .play-input-wrapper {
+  margin-top: 30vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -124,7 +119,7 @@ header img {
 
 .answer-board {
   margin-top: 100px;
-  width: 70%;
+  width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
 }

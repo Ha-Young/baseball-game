@@ -5,13 +5,13 @@ function BaseBallMgmt() {
   this.resultList = [];
 }
 
-BaseBallMgmt.prototype.makeRandomNum = function () {
+BaseBallMgmt.prototype.makeRandomNum = function (correctAnswer) {
   let randomNum;
   let overlapNum = "999";
 
   while (overlapNum) {
     randomNum = Math.floor(Math.random() * 9).toString();
-    overlapNum = this.correctAnswer.find(function (num) {
+    overlapNum = correctAnswer.find(function (num) {
       return num === randomNum;
     });
   }
@@ -20,10 +20,12 @@ BaseBallMgmt.prototype.makeRandomNum = function () {
 };
 
 BaseBallMgmt.prototype.makeCorrectAnswer = function () {
+  const newCorrectAnswer = [];
   for (let i = 0; i < 3; i++) {
-    this.correctAnswer.push(this.makeRandomNum());
+    newCorrectAnswer.push(this.makeRandomNum(newCorrectAnswer));
   }
-  console.log("make correct answer", this.correctAnswer);
+  console.log("make correct answer", newCorrectAnswer);
+  return newCorrectAnswer;
 };
 
 BaseBallMgmt.prototype.init = function () {
@@ -31,7 +33,7 @@ BaseBallMgmt.prototype.init = function () {
   this.score = 10;
   this.answerList = [];
   this.resultList = [];
-  this.makeCorrectAnswer();
+  this.correctAnswer = this.makeCorrectAnswer();
 };
 
 BaseBallMgmt.prototype.inputAnswer = function (
@@ -81,7 +83,8 @@ BaseBallMgmt.prototype.getResult = function (answer) {
   if (strike === 0 && ball === 0) {
     result = "OUT";
   } else {
-    result = `${strike}S ${ball}B`;
+    result += strike !== 0 ? `${strike}S` : "";
+    result += ball !== 0 ? `${ball}B` : "";
   }
 
   return result;

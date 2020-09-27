@@ -10,6 +10,11 @@ const resultListElement = document.getElementById("result-list");
 
 const baseBallMgmtInstance = new BaseBallMgmt();
 
+function newGame() {
+  baseBallMgmtInstance.init();
+  setValueOnPage(10, [], []);
+}
+
 function removeAllChild(element) {
   while (element.hasChildNodes()) {
     element.removeChild(element.firstChild);
@@ -55,16 +60,23 @@ function setValueOnPage(score, answerList, resultList) {
 function inputAnswer(e) {
   if (e.keyCode == 13) {
     const inputValue = e.target.value;
+    e.target.value = "";
 
     baseBallMgmtInstance.inputAnswer(
       inputValue,
       function (score, inputList, resultList) {
-        setValueOnPage(score, inputList, resultList);
+        if (score == 0) {
+          alert("당신은 패배하였습니다.\n게임을 다시 시작합니다.");
+          newGame();
+        } else {
+          setValueOnPage(score, inputList, resultList);
+        }
       },
       function (score) {
         alert(
-          `축하합니다. 정답을 맞추셨습니다.\n당신의 점수는 ${score}점 입니다.`
+          `축하합니다. 정답을 맞추셨습니다.\n당신의 점수는 ${score}점 입니다.\n게임을 다시 시작합니다.`
         );
+        newGame();
       },
       function () {
         alert("입력값이 세자리가 아닙니다. 다시 입력해주세요.");
