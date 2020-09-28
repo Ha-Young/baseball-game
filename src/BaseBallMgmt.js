@@ -39,6 +39,7 @@ BaseBallMgmt.prototype.makeCorrectAnswer = function () {
 };
 
 BaseBallMgmt.prototype.init = function () {
+  // KEN: console.log 구문은 사용 후 항상 깨끗히 정리하세요.
   console.log("claer", this.score, this.answerList, this.resultList);
   this.score = 10;
   this.answerList = [];
