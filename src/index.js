@@ -1,4 +1,4 @@
-const BaseBallMgmt = require("./BaseBallMgmt");
+const BaseBallManagement = require("./BaseBallManagement");
 
 const gameStartViewElement = document.getElementById("start-page");
 const gameStartBtnElement = gameStartViewElement.querySelector("h1");
@@ -8,10 +8,10 @@ const scoreTextElement = document.getElementById("play-score");
 const answerListElement = document.getElementById("answer-list");
 const resultListElement = document.getElementById("result-list");
 
-const baseBallMgmtInstance = new BaseBallMgmt();
+const baseBallManagementtInstance = new BaseBallManagement();
 
 function newGame() {
-  baseBallMgmtInstance.init();
+  baseBallManagementtInstance.init();
   setValueOnPage(10, [], []);
 }
 
@@ -34,7 +34,7 @@ function gameStart() {
   gameStartViewElement.style.display = "none";
   gamePlayViewElement.style.display = "block";
 
-  baseBallMgmtInstance.init();
+  baseBallManagementtInstance.init();
 }
 
 function setAnswerList(answerList) {
@@ -58,15 +58,14 @@ function setValueOnPage(score, answerList, resultList) {
 }
 
 function inputAnswer(e) {
-  if (e.keyCode == 13) {
+  if (e.keyCode === 13) {
     const inputValue = e.target.value;
     e.target.value = "";
-    console.log("inputAnswer", inputValue);
 
-    baseBallMgmtInstance.inputAnswer(
+    baseBallManagementtInstance.inputAnswer(
       inputValue,
       function (score, inputList, resultList) {
-        if (score == 0) {
+        if (score === 0) {
           alert("당신은 패배하였습니다.\n게임을 다시 시작합니다.");
           newGame();
         } else {
@@ -80,9 +79,11 @@ function inputAnswer(e) {
         newGame();
       },
       function (err) {
-        if (err === "inputErr")
+        if (err === "inputErr") {
           alert("입력값이 세자리가 아닙니다. 다시 입력해주세요.");
-        else if (err === "overlapErr") alert("중복된 값을 입력하면 안됩니다.");
+        } else if (err === "overlapErr") {
+          alert("중복된 값을 입력하면 안됩니다.");
+        }
       }
     );
   }

@@ -1,11 +1,11 @@
-function BaseBallMgmt() {
+function BaseBallManagement() {
   this.score = 10;
   this.correctAnswer = [];
   this.answerList = [];
   this.resultList = [];
 }
 
-BaseBallMgmt.prototype.checkOverlapNum = function (inputValue) {
+BaseBallManagement.prototype.checkOverlapNum = function (inputValue) {
   const checkSet = new Set(inputValue);
 
   if (checkSet.size != 3) {
@@ -15,7 +15,7 @@ BaseBallMgmt.prototype.checkOverlapNum = function (inputValue) {
   }
 };
 
-BaseBallMgmt.prototype.makeRandomNum = function (correctAnswer) {
+BaseBallManagement.prototype.makeRandomNum = function (correctAnswer) {
   let randomNum;
   let overlapNum = "999";
 
@@ -29,24 +29,22 @@ BaseBallMgmt.prototype.makeRandomNum = function (correctAnswer) {
   return randomNum;
 };
 
-BaseBallMgmt.prototype.makeCorrectAnswer = function () {
+BaseBallManagement.prototype.makeCorrectAnswer = function () {
   const newCorrectAnswer = [];
   for (let i = 0; i < 3; i++) {
     newCorrectAnswer.push(this.makeRandomNum(newCorrectAnswer));
   }
-  console.log("make correct answer", newCorrectAnswer);
   return newCorrectAnswer;
 };
 
-BaseBallMgmt.prototype.init = function () {
-  console.log("claer", this.score, this.answerList, this.resultList);
+BaseBallManagement.prototype.init = function () {
   this.score = 10;
   this.answerList = [];
   this.resultList = [];
   this.correctAnswer = this.makeCorrectAnswer();
 };
 
-BaseBallMgmt.prototype.inputAnswer = function (
+BaseBallManagement.prototype.inputAnswer = function (
   answer,
   nonCollectCallbackFunc,
   collectCallbackFunc,
@@ -72,7 +70,7 @@ BaseBallMgmt.prototype.inputAnswer = function (
   else nonCollectCallbackFunc(this.score, this.answerList, this.resultList);
 };
 
-BaseBallMgmt.prototype.getResult = function (answer) {
+BaseBallManagement.prototype.getResult = function (answer) {
   let result = "";
   let strike = 0;
   let ball = 0;
@@ -105,8 +103,8 @@ BaseBallMgmt.prototype.getResult = function (answer) {
   return result;
 };
 
-BaseBallMgmt.prototype.checkAnswer = function (answer) {
+BaseBallManagement.prototype.checkAnswer = function (answer) {
   return answer.search(/^[0-9]{3}$/);
 };
 
-module.exports = BaseBallMgmt;
+module.exports = BaseBallManagement;
