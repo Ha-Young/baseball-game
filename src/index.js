@@ -58,7 +58,8 @@ function setValueOnPage(score, answerList, resultList) {
 }
 
 function inputAnswer(e) {
-  if (e.keyCode === 13) {
+  const ENTER_KEY_CODE = 13;
+  if (e.keyCode === ENTER_KEY_CODE) {
     const inputValue = e.target.value;
     e.target.value = "";
 
